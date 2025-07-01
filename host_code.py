@@ -49,5 +49,5 @@ cl.enqueue_copy(queue, result_flat, final_output_buf).wait()
 result_img = result_flat.reshape((height, width, 4))
 
 # Save the Final Image
-Image.fromarray(result_img, mode="RGBA").save("Output_images/final_optimus_1.png")
+Image.fromarray(result_img, mode="RGBA").save("Output_images/final_optimus.png")
 print("Saved as final_optimus.png")
