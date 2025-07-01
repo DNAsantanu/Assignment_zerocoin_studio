@@ -1,3 +1,4 @@
+// Kernel 1: Gaussian Blur (3x3)
 __kernel void gaussian_blur_rgba(
     __global const uchar* input,
     __global uchar* output,
@@ -42,6 +43,7 @@ __kernel void gaussian_blur_rgba(
 
 
 // Kernel 2: Logarithmic Tone Mapping
+
 __kernel void log_tone_map_rgba(
     __global const uchar* input,
     __global uchar* output,
@@ -65,8 +67,10 @@ __kernel void log_tone_map_rgba(
     // Compute luminance Y using Rec. 709 formula
     float Y = 0.2126f * r + 0.7152f * g + 0.0722f * b;
 
-    // Apply logarithmic tone mapping
-    float Y_out = log(1.0f + Y) / log(1.0f + max_luminance);
+    // Apply logarithmic tone mapping 
+   // float Y_out = log(1.0f + Y) / log(1.0f + max_luminance);
+
+    float Y_out = log(1.0f + Y) * log(1.0f + max_luminance); 
 
     // Avoid division by zero (when Y == 0)
     float scale = (Y > 0.0f) ? (Y_out / Y) : 0.0f;
