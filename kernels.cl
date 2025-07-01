@@ -1,3 +1,12 @@
+// Gaussian blur kernel constants (moved to file scope for OpenCL compatibility)
+__constant int kx[3] = {-1, 0, 1};
+__constant int ky[3] = {-1, 0, 1};
+__constant float kernel_weights[9] = {
+    1.0f/16, 2.0f/16, 1.0f/16,
+    2.0f/16, 4.0f/16, 2.0f/16,
+    1.0f/16, 2.0f/16, 1.0f/16
+};
+
 // Kernel 1: Gaussian Blur (3x3)
 __kernel void gaussian_blur_rgba(
     __global const uchar* input,
@@ -10,17 +19,8 @@ __kernel void gaussian_blur_rgba(
     if (x >= width || y >= height)
         return;
 
-    // Define kernel inline (Metal-compatible: no const/global static arrays)
     float r = 0.0f, g = 0.0f, b = 0.0f;
     int idx;
-    
-    int kx[3] = {-1, 0, 1};
-    int ky[3] = {-1, 0, 1};
-    float kernel_weights[9] = {
-        1.0f/16, 2.0f/16, 1.0f/16,
-        2.0f/16, 4.0f/16, 2.0f/16,
-        1.0f/16, 2.0f/16, 1.0f/16
-    };
 
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
