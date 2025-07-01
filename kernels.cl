@@ -68,9 +68,9 @@ __kernel void log_tone_map_rgba(
     float Y = 0.2126f * r + 0.7152f * g + 0.0722f * b;
 
     // Apply logarithmic tone mapping 
-   // float Y_out = log(1.0f + Y) / log(1.0f + max_luminance);
-
-    float Y_out = log(1.0f + Y) * log(1.0f + max_luminance); 
+    float Y_out = log(1.0f + Y) / log(1.0f + max_luminance);
+    // the formula below mention in the assignment (which is not the correct formula for the tone compression. it introduces some sort of non linear scaling. if you really wnat to go from LDR to HDR use exponential or linear scaling formula.)
+   // float Y_out = log(1.0f + Y) * log(1.0f + max_luminance); 
 
     // Avoid division by zero (when Y == 0)
     float scale = (Y > 0.0f) ? (Y_out / Y) : 0.0f;
