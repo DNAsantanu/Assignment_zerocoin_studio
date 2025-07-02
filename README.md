@@ -2,12 +2,11 @@
 
 This project implements a two-stage GPU-accelerated image processing pipeline using OpenCL via PyOpenCL:
 
-Per-channel 3×3 Gaussian Blur
-
-Logarithmic Tone Mapping on Luminance
+Per-channel 3×3 Gaussian Blur and Logarithmic Tone Mapping on Luminance
 
 The tool reads an input image (PNG/BMP), applies both processing stages on the GPU, and outputs an enhanced image with adjusted luminance while preserving color ratios and transparency.
 
+1d_averaging.ipynb and image_data_handling.ipynb are the two jupyter notebook where the first two part of the assignment Environment Setup & OpenCL Fundamentals and Image Data Handling respectively done.
 ## File Structure
 
 ```bash
@@ -22,6 +21,9 @@ The tool reads an input image (PNG/BMP), applies both processing stages on the G
 └── README.md             # Project overview and instructions
 
 ```
+
+## Clone this repo and 1st create and enviroment using pip or conda and run the requirements.txt to install the required libraries or manually install using the under-given cmd.
+
 ## Requirements
 Python 3.8+
 
